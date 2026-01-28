@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b1220" />
+  <title>Fouad Kebbache — Alternant Cybersécurité & Systèmes</title>
+  <meta name="description" content="Portfolio de Fouad Kebbache — cybersécurité, systèmes & réseaux, supervision, virtualisation." />
+  <style>
+    :root{
+      --bg:#0b1220;
+      --panel:#111a2d;
+      --panel2:#0f172a;
+      --text:#e5e7eb;
+      --muted:#a7b0c0;
+      --line:rgba(255,255,255,.10);
+      --accent:#22c55e; /* vert */
+      --accent2:#60a5fa; /* bleu */
+      --shadow: 0 12px 40px rgba(0,0,0,.35);
+      --r:18px;
+      --max: 1080px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:
+        radial-gradient(900px 450px at 20% -10%, rgba(96,165,250,.22), transparent 60%),
+        radial-gradient(900px 450px at 90% 10%, rgba(34,197,94,.18), transparent 60%),
+        radial-gradient(900px 450px at 50% 120%, rgba(34,197,94,.10), transparent 60%),
+        var(--bg);
+      line-height:1.55;
+    }
+    a{color:inherit;text-decoration:none}
+    a:hover{opacity:.9}
+    .wrap{max-width:var(--max);margin:0 auto;padding:24px}
+    .topbar{
+      position:sticky;top:0;z-index:10;
+      backdrop-filter: blur(10px);
+      background: rgba(11,18,32,.72);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:16px; padding:14px 24px; max-width:var(--max); margin:0 auto;
+    }
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
+    .dot{width:10px;height:10px;border-radius:99px;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 0 0 6px rgba(34,197,94,.10)}
+    .links{display:flex;gap:14px;flex-wrap:wrap}
+    .links a{font-size:14px;color:var(--muted);padding:8px 10px;border-radius:999px}
+    .links a:hover{background:rgba(255,255,255,.06);color:var(--text)}
+    .hero{padding:38px 0 10px}
+    .grid2{display:grid;grid-template-columns: 1.15fr .85fr; gap:18px}
+    @media (max-width:900px){.grid2{grid-template-columns:1fr}}
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:var(--r);
+      box-shadow:var(--shadow);
+    }
+    .card.pad{padding:22px}
+    .kicker{
+      display:inline-flex; gap:8px; align-items:center;
+      padding:7px 10px;border-radius:999px;
+      background:rgba(34,197,94,.10); border:1px solid rgba(34,197,94,.22);
+      color:#b7f7cf; font-size:13px; font-weight:700;
+    }
+    h1{margin:12px 0 10px; font-size:40px; line-height:1.15}
+    @media (max-width:500px){h1{font-size:34px}}
+    .sub{color:var(--muted);margin:0 0 18px; font-size:16px}
+    .cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:10px 14px;border-radius:12px;border:1px solid var(--line);
+      background:rgba(255,255,255,.06); color:var(--text); font-weight:700; font-size:14px;
+    }
+    .btn.primary{
+      background:linear-gradient(135deg, rgba(34,197,94,.95), rgba(96,165,250,.75));
+      border:0; color:#071018;
+    }
+    .btn:active{transform:translateY(1px)}
+    .stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    .pill{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      padding:8px 10px;border-radius:999px;
+      font-size:13px;color:var(--muted)
+    }
+    .right{
+      display:flex; flex-direction:column; gap:12px;
+      height:100%;
+    }
+    .avatar{
+      display:flex; align-items:center; gap:14px;
+      padding:18px;
+      background:linear-gradient(135deg, rgba(96,165,250,.14), rgba(34,197,94,.10));
+      border:1px solid var(--line);
+      border-radius:var(--r);
+    }
+    .avatar .img{
+      width:64px;height:64px;border-radius:16px;
+      background:rgba(255,255,255,.07);
+      overflow:hidden; position:relative; flex:0 0 auto;
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+    .fallback{
+      position:absolute; inset:0;
+      display:flex; align-items:center; justify-content:center;
+      font-weight:900; font-size:20px; color:#dbeafe;
+      background: linear-gradient(135deg, rgba(96,165,250,.35), rgba(34,197,94,.22));
+    }
+    .avatar .meta{min-width:0}
+    .avatar .meta .name{font-weight:900}
+    .avatar .meta .role{color:var(--muted);font-size:13px}
+    section{padding:22px 0}
+    .section-title{
+      display:flex;align-items:flex-end;justify-content:space-between;gap:12px;
+      margin:0 0 12px;
+    }
+    h2{margin:0;font-size:22px}
+    .hint{color:var(--muted);font-size:13px}
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:14px;
+    }
+    .span6{grid-column: span 6;}
+    .span4{grid-column: span 4;}
+    .span8{grid-column: span 8;}
+    .span12{grid-column: span 12;}
+    @media (max-width:900px){
+      .span6,.span4,.span8{grid-column: span 12;}
+    }
+    .item{padding:18px}
+    .item h3{margin:0 0 6px;font-size:16px}
+    .item p{margin:0;color:var(--muted);font-size:14px}
+    .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .tag{
+      font-family:var(--mono);
+      font-size:12px;
+      padding:6px 8px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:#cbd5e1;
+    }
+    .timeline{display:flex;flex-direction:column;gap:12px}
+    .titem{padding:18px}
+    .tline{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline}
+    .tline b{font-size:15px}
+    .tline span{color:var(--muted);font-size:13px}
+    .titem ul{margin:10px 0 0 18px;color:var(--muted);font-size:14px}
+    .titem li{margin:6px 0}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media (max-width:900px){.split{grid-template-columns:1fr}}
+    .footer{padding:28px 0 38px;color:var(--muted);font-size:13px}
+    .kbd{
+      font-family:var(--mono);
+      font-size:12px;
+      padding:2px 6px;
+      border-radius:6px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:#cbd5e1;
+    }
+    .small{font-size:12px;color:var(--muted)}
+    .divider{height:1px;background:var(--line);margin:18px 0}
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="nav">
+      <div class="brand"><span class="dot"></span> Fouad Kebbache</div>
+      <div class="links">
+        <a href="#about">À propos</a>
+        <a href="#skills">Compétences</a>
+        <a href="#experience">Expérience</a>
+        <a href="#projects">Projets</a>
+        <a href="#education">Formation</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <div class="hero">
+      <div class="grid2">
+        <div class="card pad">
+          <div class="kicker">Alternant Cybersécurité & Systèmes</div>
+          <h1>Je sécurise, automatise et supervise des infrastructures.</h1>
+          <p class="sub">
+            Étudiant en BUT Informatique (Réseaux & sécurité) — je recherche une alternance à partir de <b>début septembre 2026</b>.
+            Intérêt : sécurisation des serveurs Linux, supervision (monitoring), virtualisation et bonnes pratiques réseau.
+          </p>
+
+          <div class="cta">
+            <a class="btn primary" href="#projects">Voir mes projets</a>
+            <a class="btn" href="#contact">Me contacter</a>
+            <a class="btn" href="https://github.com/fouad1112" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+
+          <div class="stats">
+            <div class="pill">Linux (Debian/Ubuntu)</div>
+            <div class="pill">Réseaux : VLAN · DHCP · DNS</div>
+            <div class="pill">Supervision : Prometheus/Grafana · Nagios</div>
+            <div class="pill">Virtualisation : Docker · VirtualBox</div>
+          </div>
+
+          <div class="divider"></div>
+          <div class="small">
+            Astuce : tu peux ajouter une photo en uploadant <span class="kbd">assets/profile.jpg</span> dans ton repo (voir section Contact).
+          </div>
+        </div>
+
+        <div class="right">
+          <div class="avatar card">
+            <div class="img">
+              <img src="assets/profile.jpg" alt="Photo de profil" onerror="this.style.display='none';document.getElementById('avatar-fallback').style.display='flex';" />
+              <div id="avatar-fallback" class="fallback" style="display:none;">FK</div>
+            </div>
+            <div class="meta">
+              <div class="name">Fouad Kebbache</div>
+              <div class="role">Hauts-de-France · Île-de-France · Permis B (véhiculé)</div>
+              <div class="small">Français (courant) · Anglais (B1) · Arabe (courant) · Kabyle (courant)</div>
+            </div>
+          </div>
+
+          <div class="card pad">
+            <div class="section-title">
+              <h2>Ce que je cherche</h2>
+              <div class="hint">Disponibilité</div>
+            </div>
+            <p class="sub" style="margin:0">
+              Une alternance en <b>cybersécurité & systèmes</b> pour travailler sur : durcissement Linux, automatisation, supervision,
+              gestion réseau (VLAN/DNS/DHCP), et mise en place de stratégies de sauvegarde.
+            </p>
+          </div>
+
+          <div class="card pad">
+            <div class="section-title">
+              <h2>Contact rapide</h2>
+              <div class="hint">Liens</div>
+            </div>
+            <div class="tags" style="margin-top:6px">
+              <a class="tag" href="mailto:fouadkeb2003@gmail.com">Email</a>
+              <a class="tag" href="https://github.com/fouad1112" target="_blank" rel="noreferrer">GitHub</a>
+              <!-- Ajoute LinkedIn ici quand tu l'auras : <a class="tag" href="https://www.linkedin.com/in/TON-PROFIL">LinkedIn</a> -->
+            </div>
+            <div class="small" style="margin-top:10px">
+              (Optionnel) Téléphone : ajoute-le si tu veux l’afficher publiquement.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="about">
+      <div class="section-title">
+        <h2>À propos</h2>
+        <div class="hint">Profil</div>
+      </div>
+      <div class="cards">
+        <div class="card item span8">
+          <h3>Qui je suis</h3>
+          <p>
+            Je suis étudiant en informatique orienté <b>réseaux, systèmes et sécurité</b>.
+            J’aime construire des environnements propres et sécurisés : reverse proxy, durcissement serveur, supervision,
+            sauvegardes, et automatisation (scripts).
+          </p>
+          <div class="tags">
+            <span class="tag">Linux</span>
+            <span class="tag">Sécurité</span>
+            <span class="tag">Monitoring</span>
+            <span class="tag">Docker</span>
+            <span class="tag">Réseaux</span>
+          </div>
+        </div>
+
+        <div class="card item span4">
+          <h3>Ce qui me motive</h3>
+          <p>
+            Apprendre sur des cas concrets, collaborer avec une équipe, et améliorer la fiabilité/sécurité de services
+            (disponibilité, intégrité, alerting).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="section-title">
+        <h2>Compétences</h2>
+        <div class="hint">Tech & outils</div>
+      </div>
+
+      <div class="cards">
+        <div class="card item span6">
+          <h3>Cybersécurité & supervision</h3>
+          <p>Pare-feu, SSL/TLS, certificats, chiffrement Linux, signature GPG, sauvegarde/mirroring, défense (SYN Flood, SMURF, ARP poisoning), supervision (Nagios, Netdata, Nessus, Prometheus/Grafana).</p>
+          <div class="tags">
+            <span class="tag">SSL/TLS</span><span class="tag">GPG</span><span class="tag">Nessus</span><span class="tag">Grafana</span><span class="tag">Nagios</span>
+          </div>
+        </div>
+
+        <div class="card item span6">
+          <h3>Administration systèmes & réseaux</h3>
+          <p>Linux (Debian/Ubuntu), routeurs/switchs, VLAN, DHCP, DNS, NFS, SMB, HTTP, SMTP, POP/IMAP, LDAP.</p>
+          <div class="tags">
+            <span class="tag">VLAN</span><span class="tag">DHCP</span><span class="tag">DNS</span><span class="tag">LDAP</span><span class="tag">NFS/SMB</span>
+          </div>
+        </div>
+
+        <div class="card item span6">
+          <h3>Virtualisation & scripting</h3>
+          <p>VMware, VirtualBox, Docker, Bash, PowerShell.</p>
+          <div class="tags">
+            <span class="tag">Docker</span><span class="tag">VirtualBox</span><span class="tag">Bash</span><span class="tag">PowerShell</span>
+          </div>
+        </div>
+
+        <div class="card item span6">
+          <h3>Développement & bases de données</h3>
+          <p>C, C++, C#, Java, Python, R — HTML/CSS/PHP (notions), Node.js (notions). SQL, Oracle, SQL Server (création, implémentation, gestion).</p>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">C/C++</span><span class="tag">SQL</span><span class="tag">Oracle</span><span class="tag">Web (notions)</span>
+          </div>
+        </div>
+
+        <div class="card item span12">
+          <h3>Outils</h3>
+          <p>Canva · Figma · Trello / Asana (gestion de projet).</p>
+          <div class="tags">
+            <span class="tag">Figma</span><span class="tag">Canva</span><span class="tag">Trello</span><span class="tag">Asana</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="section-title">
+        <h2>Expérience</h2>
+        <div class="hint">Stages & projets académiques</div>
+      </div>
+
+      <div class="timeline">
+        <div class="card titem">
+          <div class="tline">
+            <b>Stage BUT3 — Développeur Web (distanciel) · Feelingjack</b>
+            <span>Mars → Juin 2025 (3 mois)</span>
+          </div>
+          <ul>
+            <li>Développement d’une application web pour une association d’organisation de marathon.</li>
+            <li>Technos : React, Next.js, TailwindCSS.</li>
+            <li>Travail en environnement structuré : organisation du code, collaboration, respect des délais.</li>
+            <li>Prise en compte des enjeux de sécurité applicative et de fiabilité des services.</li>
+          </ul>
+        </div>
+
+        <div class="card titem">
+          <div class="tline">
+            <b>Projet académique — Infrastructure Réseau & Sécurité · Kinopio</b>
+            <span>2024 → 2025</span>
+          </div>
+          <ul>
+            <li>Mise en place d’une infrastructure virtualisée avec Docker pour le déploiement.</li>
+            <li>Reverse proxy Nginx, durcissement Linux (Fail2ban, mises à jour automatiques), déploiement d’un WAF.</li>
+            <li>Stratégie de sauvegarde multi-sites (inspirée de la règle 3-2-1) et supervision (ressources, alertes).</li>
+            <li>Collaboration et organisation (Trello) avec les équipes dev & base de données.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-title">
+        <h2>Projets</h2>
+        <div class="hint">Sélection</div>
+      </div>
+
+      <div class="cards">
+        <div class="card item span6">
+          <h3>SAE S1.03 — Installation d’une machine virtuelle Unix (VirtualBox)</h3>
+          <p>
+            Mise en place d’une VM Unix et réalisation d’exercices admin : comptes/groupes, permissions, politiques d’expiration de mots de passe,
+            installation de paquets (ex: cowsay/sysvbanner), scripts Bash et un petit programme en C.
+          </p>
+          <div class="tags">
+            <span class="tag">VirtualBox</span><span class="tag">Ubuntu/Linux</span><span class="tag">Bash</span><span class="tag">Commandes Unix</span><span class="tag">C</span>
+          </div>
+          <div class="small" style="margin-top:10px">
+            <!-- Ajoute un lien si tu as un repo : <a href="https://github.com/...." class="tag">Repo</a> -->
+          </div>
+        </div>
+
+        <div class="card item span6">
+          <h3>SAE S1.4 — Base de données “Bibliothèque” : correction + requêtes SQL</h3>
+          <p>
+            Correction/normalisation d’un script SQL (contraintes, types, clés étrangères) puis écriture de requêtes :
+            triple jointure, tri, regroupement + HAVING, opérations ensemblistes (UNION/INTERSECT), ANY/ALL, NOT IN, etc.
+          </p>
+          <div class="tags">
+            <span class="tag">SQL</span><span class="tag">Modélisation</span><span class="tag">Contraintes</span><span class="tag">Jointures</span><span class="tag">UNION/INTERSECT</span>
+          </div>
+        </div>
+
+        <div class="card item span12">
+          <h3>À venir</h3>
+          <p>
+            Tu m’envoies tes autres projets (ou liens GitHub/démos) et je les ajoute dans le même style ici.
+            Je peux aussi te faire une section <b>“CV”</b> (PDF téléchargeable) + <b>“certifications”</b> plus détaillée.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="section-title">
+        <h2>Formation & certifications</h2>
+        <div class="hint">Parcours</div>
+      </div>
+
+      <div class="split">
+        <div class="card item">
+          <h3>Formations</h3>
+          <ul style="margin:10px 0 0 18px;color:var(--muted);font-size:14px">
+            <li><b>École d’ingénieur — EIJV Amiens</b> (Cybersécurité) — 2025–2028</li>
+            <li><b>BUT Informatique — Amiens</b> (Réseaux & sécurité) — 2022–2025</li>
+            <li><b>Bac Technologique STI2D</b> — 2019–2022</li>
+          </ul>
+        </div>
+
+        <div class="card item">
+          <h3>Certifications</h3>
+          <ul style="margin:10px 0 0 18px;color:var(--muted);font-size:14px">
+            <li>AWS Academy Graduate</li>
+            <li>CCNA: Introduction to Networks</li>
+            <li>Attestation e‑sensibilisation</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-title">
+        <h2>Contact</h2>
+        <div class="hint">Simple & rapide</div>
+      </div>
+
+      <div class="cards">
+        <div class="card item span8">
+          <h3>Me contacter</h3>
+          <p>
+            Tu peux m’écrire par email : <a class="tag" href="mailto:fouadkeb2003@gmail.com">fouadkeb2003@gmail.com</a>
+          </p>
+          <div class="tags">
+            <a class="tag" href="mailto:fouadkeb2003@gmail.com">Envoyer un email</a>
+            <a class="tag" href="https://github.com/fouad1112" target="_blank" rel="noreferrer">Voir mon GitHub</a>
+          </div>
+          <div class="divider"></div>
+          <div class="small">
+            <b>Ajouter ta photo :</b> dans ton repo GitHub, crée un dossier <span class="kbd">assets</span> (s’il n’existe pas),
+            puis upload une image nommée <span class="kbd">profile.jpg</span>.
+          </div>
+        </div>
+
+        <div class="card item span4">
+          <h3>Infos</h3>
+          <p>Localisation : Hauts-de-France / Île-de-France</p>
+          <p class="small" style="margin-top:10px">
+            Mise à jour : <span id="updated"></span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      © <span id="year"></span> Fouad Kebbache — Portfolio. <span class="small">Construit en HTML/CSS, hébergé sur GitHub Pages.</span>
+    </div>
+  </main>
+
+  <script>
+    const y = new Date();
+    document.getElementById("year").textContent = y.getFullYear();
+    document.getElementById("updated").textContent = y.toLocaleDateString("fr-FR", { year:"numeric", month:"long", day:"numeric" });
+  </script>
+</body>
+</html>
