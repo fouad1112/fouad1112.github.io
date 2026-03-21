@@ -218,8 +218,8 @@ nav.stuck {
 .exp-entry h3 { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 4px; letter-spacing: -0.3px; }
 .exp-company { font-size: 14px; color: var(--accent2); font-weight: 600; margin-bottom: 20px; }
 .exp-entry ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
-.exp-entry li { font-size: 15px; color: var(--muted); line-height: 1.7; display: flex; gap: 12px; align-items: flex-start; }
-.exp-entry li::before { content: '→'; color: var(--accent); flex-shrink: 0; font-size: 13px; margin-top: 3px; }
+.exp-entry li { font-size: 15px; color: var(--muted); line-height: 1.8; display: block; padding-left: 20px; position: relative; }
+.exp-entry li::before { content: '→'; color: var(--accent); font-size: 13px; position: absolute; left: 0; top: 2px; }
 .exp-entry li strong { color: var(--text); font-weight: 600; }
 
 /* EDUCATION */
@@ -411,11 +411,14 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; display: flex; al
 /* Learnings */
 .modal-learnings { display: flex; flex-direction: column; gap: 10px; }
 .mlearn {
-  display: flex; gap: 12px; align-items: flex-start;
-  font-size: 14px; color: var(--muted); line-height: 1.7;
+  display: block;
+  padding-left: 20px;
+  position: relative;
+  font-size: 14px; color: var(--muted); line-height: 1.8;
+  margin-bottom: 2px;
 }
-.mlearn::before { content: '→'; color: var(--accent); flex-shrink: 0; font-family: var(--mono); margin-top: 1px; }
-.mlearn strong { color: var(--text); }
+.mlearn::before { content: '→'; color: var(--accent); font-family: var(--mono); position: absolute; left: 0; top: 1px; }
+.mlearn strong { color: var(--text); font-weight: 600; }
 
 /* GitHub link in modal */
 .modal-gh {
@@ -696,7 +699,9 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; display: flex; al
   .exp-period { font-size: 10px; padding: 4px 10px; }
   .exp-kind { font-size: 10px; }
   .exp-entry ul { gap: 8px; }
-  .exp-entry li { font-size: 13px; line-height: 1.65; gap: 9px; word-break: break-word; overflow-wrap: break-word; }
+  .exp-entry li { font-size: 13px; line-height: 1.65; gap: 9px; word-break: break-word; overflow-wrap: break-word; display: block; padding-left: 18px; position: relative; }
+  .exp-entry li::before { position: absolute; left: 0; top: 2px; }
+  .exp-entry li strong { display: inline; }
   .exp-entry li::before { font-size: 11px; margin-top: 2px; }
 
   .edu-grid { gap: 10px; }
