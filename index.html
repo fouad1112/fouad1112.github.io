@@ -7,7 +7,9 @@
 <meta name="description" content="Portfolio de Fouad Kebbache — Cybersécurité, Red/Blue Team, Cloud AWS, Gouvernance.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
 
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -157,10 +159,17 @@ nav.stuck { background: rgba(10,13,20,0.92); backdrop-filter: blur(18px); border
   border-bottom: 1px solid var(--border);
   position: relative; overflow: hidden;
   flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
 }
 .pcard-wide .pcard-vis { height: 230px; }
 
-/* fade overlay removed — images used instead */
+.pcard-vis img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+}
 
 /* terminal inside */
 .pv-term {
@@ -673,7 +682,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; display: flex; al
   </div>
 
   <div class="hero-card reveal d3">
-    <img src="assets/profile.jpg" alt="Fouad Kebbache" style="width:60px;height:60px;border-radius:12px;object-fit:cover;margin-bottom:20px;" onerror="this.style.display='none';document.getElementById('hc-fb').style.display='flex'">
+    <img loading="eager" src="assets/profile.jpg" alt="Fouad Kebbache" style="width:60px;height:60px;border-radius:12px;object-fit:cover;margin-bottom:20px;" onerror="this.style.display='none';document.getElementById('hc-fb').style.display='flex'">
     <div id="hc-fb" style="display:none;width:60px;height:60px;border-radius:12px;background:linear-gradient(135deg,#4fffb0,#e8ff6e);align-items:center;justify-content:center;font-family:var(--mono);font-size:20px;font-weight:700;color:#0a0d14;margin-bottom:20px;">FK</div>
     <div class="hc-name">Fouad Kebbache</div>
     <div class="hc-role">Ingénieur Cybersécurité</div>
@@ -765,7 +774,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; display: flex; al
       <!-- ── 001 outil-cyber-simple ───────────────────────────────── -->
       <div class="pcard reveal" data-modal="recon">
         <div class="pcard-vis">
-          <img src="assets/outil-cyber-simple.png" alt="Outil Cyber Simple" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <img loading="lazy" src="assets/outil-cyber-simple.png" alt="Outil Cyber Simple" style="">
         </div>
         <div class="pcard-body">
           <div class="p-meta">
@@ -787,7 +796,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; display: flex; al
       <!-- ── 002 RSA CTF ──────────────────────────────────────────── -->
       <div class="pcard reveal d2" data-modal="rsa">
         <div class="pcard-vis">
-          <img src="assets/dechiffrement_RSA_CTF.png" alt="Déchiffrement RSA CTF" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <img loading="lazy" src="assets/dechiffrement_RSA_CTF.png" alt="Déchiffrement RSA CTF" style="">
         </div>
         <div class="pcard-body">
           <div class="p-meta">
@@ -869,7 +878,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; display: flex; al
       <!-- ── 004 log-sentinel ──────────────────────────────────────── -->
       <div class="pcard reveal d2" data-modal="sentinel">
         <div class="pcard-vis">
-          <img src="assets/banniere.jpg" alt="Log Sentinel" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <img loading="lazy" src="assets/banniere.jpg" alt="Log Sentinel" style="">
         </div>
         <div class="pcard-body">
           <div class="p-meta">
@@ -1027,7 +1036,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; display: flex; al
     </div>
     <div class="modal-body">
 
-      <img src="assets/banniere.jpg" alt="Log Sentinel" style="width:100%;border-radius:8px;display:block;max-height:220px;object-fit:cover;">
+      <img loading="lazy" src="assets/banniere.jpg" alt="Log Sentinel" style="width:100%;border-radius:8px;display:block;max-height:220px;object-fit:cover;">
 
       <div>
         <div class="msec-label">Contexte</div>
@@ -1168,7 +1177,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; display: flex; al
     </div>
     <div class="modal-body">
 
-      <img src="assets/outil-cyber-simple.png" alt="Outil Cyber Simple" style="width:100%;border-radius:8px;display:block;max-height:220px;object-fit:cover;object-position:center top;">
+      <img loading="lazy" src="assets/outil-cyber-simple.png" alt="Outil Cyber Simple" style="width:100%;border-radius:8px;display:block;max-height:220px;object-fit:cover;object-position:center top;">
 
       <div>
         <div class="msec-label">Contexte</div>
@@ -1282,7 +1291,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; display: flex; al
     </div>
     <div class="modal-body">
 
-      <img src="assets/dechiffrement_RSA_CTF.png" alt="Déchiffrement RSA CTF" style="width:100%;border-radius:8px;display:block;max-height:220px;object-fit:cover;object-position:center top;">
+      <img loading="lazy" src="assets/dechiffrement_RSA_CTF.png" alt="Déchiffrement RSA CTF" style="width:100%;border-radius:8px;display:block;max-height:220px;object-fit:cover;object-position:center top;">
 
       <div>
         <div class="msec-label">Contexte</div>
@@ -1541,15 +1550,22 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; display: flex; al
 <script>
 document.getElementById('yr').textContent = new Date().getFullYear();
 
-// Nav sticky + active links
+// Nav sticky + active links — throttlé pour ne pas tourner à chaque pixel
 const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
+const secs = [...document.querySelectorAll('section[id]')];
+const links = [...document.querySelectorAll('.nav-links a')];
+let ticking = false;
+
+function onScroll() {
   nav.classList.toggle('stuck', window.scrollY > 60);
-  const secs = document.querySelectorAll('section[id]');
-  const links = document.querySelectorAll('.nav-links a');
   let cur = '';
   secs.forEach(s => { if (window.scrollY >= s.offsetTop - 180) cur = s.id; });
   links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + cur));
+  ticking = false;
+}
+
+window.addEventListener('scroll', () => {
+  if (!ticking) { requestAnimationFrame(onScroll); ticking = true; }
 }, { passive: true });
 
 // Scroll reveal
