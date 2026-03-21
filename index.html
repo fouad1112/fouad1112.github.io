@@ -1823,8 +1823,16 @@ window.addEventListener('scroll', () => {
 // Scroll reveal
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-}, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+}, { threshold: 0.05, rootMargin: '0px 0px 0px 0px' });
+
+const revealEls = document.querySelectorAll('.reveal');
+revealEls.forEach(el => obs.observe(el));
+
+// Sécurité : si l'observer ne déclenche pas (ex: GitHub Pages iFrame),
+// on rend tout visible après 300ms
+setTimeout(() => {
+  revealEls.forEach(el => el.classList.add('in'));
+}, 300);
 
 // ── MODALS ────────────────────────────────────────────────────────────────────
 function toggleMenu() {
@@ -1835,6 +1843,7 @@ function toggleMenu() {
 }
 
 
+function openModal(id) {
   const overlay = document.getElementById('modal-' + id);
   if (!overlay) return;
   overlay.classList.add('open');
