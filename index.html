@@ -49,8 +49,27 @@ nav.stuck {
   border-color: var(--border);
   padding: 16px 60px;
 }
-.nav-logo { font-family: var(--mono); font-size: 15px; color: var(--accent); letter-spacing: -0.3px; }
-.nav-logo::before { content: '> '; color: var(--muted); }
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-style: italic;
+  color: var(--text);
+  letter-spacing: -0.2px;
+  display: flex; align-items: center; gap: 10px;
+}
+.nav-logo::after {
+  content: 'Cybersécurité';
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 10px;
+  color: var(--accent2);
+  background: rgba(78,255,176,0.08);
+  border: 1px solid rgba(78,255,176,0.2);
+  border-radius: 100px;
+  padding: 3px 10px;
+  letter-spacing: 0.5px;
+  vertical-align: middle;
+}
 .nav-links { display: flex; gap: 36px; }
 .nav-links a { font-size: 13px; font-weight: 600; color: var(--muted); letter-spacing: 0.3px; transition: color 0.25s; }
 .nav-links a:hover, .nav-links a.active { color: var(--text); }
@@ -610,6 +629,81 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; display: flex; al
   .modal-backdrop { padding: 12px; }
 }
 
+/* ─── TIMELINE ───────────────────────────────────────────────────────────── */
+.timeline-wrap {
+  position: relative;
+  margin-top: 56px;
+  padding-bottom: 20px;
+  overflow-x: auto;
+}
+.tl-line {
+  position: absolute;
+  top: 22px;
+  left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border) 10%, var(--border) 90%, transparent);
+}
+.tl-steps {
+  display: flex;
+  gap: 0;
+  justify-content: space-between;
+  position: relative;
+  min-width: 600px;
+}
+.tl-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+}
+.tl-dot {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  border: 2px solid;
+  flex-shrink: 0;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.25s;
+}
+.tl-step:hover .tl-dot { transform: scale(1.4); }
+.tl-card {
+  text-align: center;
+  padding: 18px 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  width: 90%;
+  max-width: 160px;
+  transition: border-color 0.25s;
+}
+.tl-step:hover .tl-card { border-color: rgba(78,255,176,0.2); }
+.tl-card-future {
+  border-color: rgba(232,255,110,0.2);
+  background: rgba(232,255,110,0.03);
+}
+.tl-date {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--accent2);
+  letter-spacing: 0.5px;
+  display: block;
+  margin-bottom: 8px;
+}
+.tl-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+.tl-sub {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
 /* ─── RESPONSIVE ─────────────────────────────────────────────────────────── */
 
 /* PC perf — uniquement sur les éléments qui en ont vraiment besoin */
@@ -637,13 +731,22 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; display: flex; al
   .hero-meta { flex-wrap: wrap; gap: 20px; }
 }
 
+/* Tablet — hide pill to save space, keep logo + links + toggle */
+@media (max-width: 900px) {
+  .nav-pill { display: none !important; }
+  .nav-links { gap: 18px; }
+  .nav-links a { font-size: 12px; }
+}
+
 /* Mobile — 640px */
 @media (max-width: 640px) {
   nav { padding: 16px 20px; }
   nav.stuck { padding: 12px 20px; }
+  .nav-logo { flex-shrink: 0; }
   .nav-links { display: none; }
-  .nav-pill { display: none; }
-  #menu-btn { display: block !important; }
+  .nav-pill { display: none !important; }
+  #menu-btn { display: flex !important; align-items: center; justify-content: center; }
+  .theme-toggle { flex-shrink: 0; }
 
   .w { padding: 0 16px; }
   .section { padding: 50px 0; }
@@ -755,22 +858,243 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; display: flex; al
   .hero-actions { flex-direction: column; }
   .w { padding: 0 12px; }
 }
+
+/* ── LIGHT THEME ──────────────────────────────────────────────────────────── */
+[data-theme="light"] {
+  --bg:       #f0f2f7;
+  --bg-card:  #ffffff;
+  --accent:   #16a34a;
+  --accent2:  #0891b2;
+  --text:     #0d1117;
+  --muted:    #4a5568;
+  --border:   rgba(0,0,0,0.09);
+  --border-h: rgba(22,163,74,0.35);
+}
+[data-theme="light"] body { background: var(--bg); }
+[data-theme="light"] nav.stuck { background: rgba(240,242,247,0.96); }
+[data-theme="light"] .nav-logo { color: var(--text); }
+[data-theme="light"] .nav-logo::after { background: rgba(8,145,178,0.08); border-color: rgba(8,145,178,0.2); color: #0891b2; }
+[data-theme="light"] .nav-pill {
+  background: rgba(22,163,74,0.08);
+  border-color: rgba(22,163,74,0.3);
+}
+[data-theme="light"] .nav-pill:hover { background: var(--accent); color: #fff; }
+[data-theme="light"] .btn-fill { color: #fff; }
+[data-theme="light"] .skill-box,
+[data-theme="light"] .edu-box,
+[data-theme="light"] .hero-card,
+[data-theme="light"] .c-card { box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+[data-theme="light"] .exp-period {
+  background: rgba(22,163,74,0.07);
+  border-color: rgba(22,163,74,0.2);
+}
+[data-theme="light"] .p-badge {
+  background: rgba(8,145,178,0.07);
+  border-color: rgba(8,145,178,0.2);
+  color: #0891b2;
+}
+[data-theme="light"] .modal-overlay,
+[data-theme="light"] .modal-backdrop { background: rgba(240,242,247,0.9); }
+[data-theme="light"] .modal {
+  background: #ffffff;
+  border-color: rgba(0,0,0,0.1);
+}
+[data-theme="light"] .modal-head,
+[data-theme="light"] .modal-close { background: #ffffff; }
+[data-theme="light"] .modal-close-btn {
+  border-color: rgba(0,0,0,0.12);
+  color: var(--muted);
+}
+[data-theme="light"] .mcode,
+[data-theme="light"] .modal-term,
+[data-theme="light"] .terminal { background: #1a1c2e; }
+[data-theme="light"] .pcard-vis,
+[data-theme="light"] [style*="background:#0d1117"],
+[data-theme="light"] [style*="background:#080c14"] { filter: none; }
+[data-theme="light"] .modal-stat { background: rgba(0,0,0,0.03); }
+[data-theme="light"] .sk-tag,
+[data-theme="light"] .p-tag,
+[data-theme="light"] .modal-tag {
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.1);
+  color: var(--muted);
+}
+[data-theme="light"] .mstack-item {
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.09);
+}
+[data-theme="light"] .contact-form-wrap {
+  background: #ffffff;
+  border-color: rgba(0,0,0,0.09);
+}
+/* Terminal text always visible (dark bg) */
+[data-theme="light"] .t-prompt { color: #4fffb0; }
+[data-theme="light"] .t-cmd    { color: #e2e8f0; }
+[data-theme="light"] .t-out    { color: #94a3b8; }
+[data-theme="light"] .t-out.hi { color: #e8ff6e; }
+[data-theme="light"] .t-cur    { background: #4fffb0; }
+[data-theme="light"] .term-label { color: #64748b; }
+[data-theme="light"] .cf-input,
+[data-theme="light"] .cf-textarea {
+  background: #f7f9fc;
+  border-color: rgba(0,0,0,0.12);
+  color: var(--text);
+}
+[data-theme="light"] .cf-input:focus,
+[data-theme="light"] .cf-textarea:focus {
+  border-color: var(--accent);
+  background: #ffffff;
+}
+[data-theme="light"] .cf-input::placeholder,
+[data-theme="light"] .cf-textarea::placeholder { color: #a0aec0; }
+
+/* ── THEME TOGGLE BUTTON ───────────────────────────────────────────────────── */
+.theme-toggle {
+  position: relative;
+  width: 56px; height: 28px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.06);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.3s, border-color 0.3s;
+  display: flex; align-items: center; padding: 0 4px;
+}
+.theme-toggle::before {
+  content: '';
+  position: absolute;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  left: 3px;
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), background 0.3s;
+  box-shadow: 0 0 8px rgba(232,255,110,0.5);
+}
+.theme-toggle .tt-icons {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; pointer-events: none;
+  font-size: 11px; padding: 0 1px;
+}
+.theme-toggle .tt-moon { opacity: 0.9; }
+.theme-toggle .tt-sun  { opacity: 0.35; }
+[data-theme="light"] .theme-toggle {
+  background: rgba(0,0,0,0.06);
+  border-color: rgba(22,163,74,0.3);
+}
+[data-theme="light"] .theme-toggle::before {
+  transform: translateX(28px);
+  background: var(--accent);
+  box-shadow: 0 0 8px rgba(22,163,74,0.4);
+}
+[data-theme="light"] .theme-toggle .tt-moon { opacity: 0.3; }
+[data-theme="light"] .theme-toggle .tt-sun  { opacity: 1; }
+.theme-toggle:hover { border-color: var(--accent); }
+
+/* ── CONTACT FORM ──────────────────────────────────────────────────────────── */
+.contact-form-section { margin-top: 60px; }
+.contact-form-wrap {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px 40px;
+  position: relative; overflow: hidden;
+}
+.contact-form-wrap::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent2), transparent);
+  opacity: 0.4;
+}
+.cf-title {
+  font-family: var(--serif);
+  font-size: 24px; color: var(--text);
+  margin-bottom: 6px; letter-spacing: -0.3px;
+}
+.cf-sub { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
+.cf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.cf-field { display: flex; flex-direction: column; gap: 6px; }
+.cf-label {
+  font-family: var(--mono);
+  font-size: 10px; color: var(--muted);
+  letter-spacing: 1.5px; text-transform: uppercase;
+}
+.cf-input, .cf-textarea {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px 16px;
+  font-family: var(--sans);
+  font-size: 14px; color: var(--text);
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+  width: 100%;
+}
+.cf-input:focus, .cf-textarea:focus {
+  border-color: var(--accent2);
+  background: rgba(255,255,255,0.06);
+}
+.cf-input::placeholder, .cf-textarea::placeholder { color: rgba(255,255,255,0.18); }
+.cf-textarea { resize: vertical; min-height: 110px; }
+.cf-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; margin-top: 16px; }
+.cf-note { font-family: var(--mono); font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+.cf-note::before { content: '🔒'; font-size: 12px; }
+.cf-submit {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 28px;
+  background: var(--accent);
+  color: #0a0d14;
+  font-weight: 700; font-size: 14px;
+  border: none; border-radius: 6px;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+  font-family: var(--sans);
+}
+.cf-submit:hover { box-shadow: 0 0 20px rgba(232,255,110,0.35); }
+[data-theme="light"] .cf-submit { color: #fff; }
+.cf-submit:disabled { opacity: 0.6; cursor: not-allowed; box-shadow: none; }
+.cf-success {
+  display: none; align-items: center; gap: 10px;
+  padding: 14px 20px;
+  background: rgba(78,255,176,0.07);
+  border: 1px solid rgba(78,255,176,0.25);
+  border-radius: 8px;
+  font-size: 14px; color: var(--accent2);
+  margin-top: 16px;
+}
+.cf-success.show { display: flex; }
+.cf-error {
+  display: none; font-size: 13px; color: #f87171;
+  margin-top: 8px;
+}
+.cf-error.show { display: block; }
+
+@media (max-width: 640px) {
+  .cf-grid { grid-template-columns: 1fr; gap: 12px; }
+  .contact-form-wrap { padding: 22px 18px; }
+  .cf-footer { flex-direction: column; align-items: flex-start; }
+  .cf-submit { width: 100%; justify-content: center; }
+}
+
 </style>
 </head>
 <body>
 
 <nav id="nav">
-  <div class="nav-logo">fk.sys</div>
+  <div class="nav-logo">Fouad Kebbache</div>
   <div class="nav-links">
     <a href="#about">Profil</a>
     <a href="#skills">Skills</a>
     <a href="#projects">Projets</a>
     <a href="#experience">Expériences</a>
+    <a href="#education">Formation</a>
     <a href="#contact">Contact</a>
   </div>
   <div style="display:flex;align-items:center;gap:12px;">
     <a href="mailto:fouadkeb2003@gmail.com" class="nav-pill">Dispo. Septembre 2026</a>
     <button id="menu-btn" onclick="toggleMenu()" aria-label="Menu" style="display:none;background:none;border:1px solid var(--border);border-radius:6px;padding:8px 10px;cursor:pointer;color:var(--text);font-size:18px;line-height:1;">☰</button>
+    <button class="theme-toggle" id="theme-btn" aria-label="Changer de thème" title="Mode clair / sombre">
+      <span class="tt-icons"><span class="tt-moon">🌙</span><span class="tt-sun">☀️</span></span>
+    </button>
   </div>
 </nav>
 
@@ -781,6 +1105,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; display: flex; al
   <a href="#skills" onclick="toggleMenu()" style="font-family:var(--serif);font-size:32px;color:var(--text);text-decoration:none;font-style:italic;">Skills</a>
   <a href="#projects" onclick="toggleMenu()" style="font-family:var(--serif);font-size:32px;color:var(--text);text-decoration:none;font-style:italic;">Projets</a>
   <a href="#experience" onclick="toggleMenu()" style="font-family:var(--serif);font-size:32px;color:var(--text);text-decoration:none;font-style:italic;">Expériences</a>
+  <a href="#education" onclick="toggleMenu()" style="font-family:var(--serif);font-size:32px;color:var(--text);text-decoration:none;font-style:italic;">Formation</a>
   <a href="#contact" onclick="toggleMenu()" style="font-family:var(--serif);font-size:32px;color:var(--text);text-decoration:none;font-style:italic;">Contact</a>
 </div>
 
@@ -817,6 +1142,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; display: flex; al
         <div class="value">B — Véhiculé</div>
       </div>
     </div>
+
   </div>
 
   <div class="hero-card reveal d3">
@@ -1270,6 +1596,44 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; display: flex; al
         </div>
       </div>
     </div>
+
+
+<!-- FORMULAIRE DE CONTACT -->
+<div class="contact-form-section reveal">
+  <div class="contact-form-wrap">
+    <h3 class="cf-title">Envoyer un message</h3>
+    <p class="cf-sub">Réponse sous 24h. Toutes les opportunités d'alternance sont les bienvenues.</p>
+
+    <form id="contact-form" action="https://formspree.io/f/VOTRE_ID_ICI" method="POST" novalidate>
+      <div class="cf-grid">
+        <div class="cf-field">
+          <label class="cf-label" for="cf-name">Nom</label>
+          <input class="cf-input" type="text" id="cf-name" name="name" placeholder="Jean Dupont" required autocomplete="name">
+        </div>
+        <div class="cf-field">
+          <label class="cf-label" for="cf-email">Email</label>
+          <input class="cf-input" type="email" id="cf-email" name="email" placeholder="jean@entreprise.fr" required autocomplete="email">
+        </div>
+      </div>
+      <div class="cf-field" style="margin-bottom:16px;">
+        <label class="cf-label" for="cf-subject">Sujet</label>
+        <input class="cf-input" type="text" id="cf-subject" name="subject" placeholder="Alternance cybersécurité — Sept. 2026" required>
+      </div>
+      <div class="cf-field">
+        <label class="cf-label" for="cf-msg">Message</label>
+        <textarea class="cf-textarea" id="cf-msg" name="message" placeholder="Bonjour Fouad, je vous contacte pour…" required></textarea>
+      </div>
+      <div class="cf-footer">
+        <span class="cf-note">Formulaire chiffré · jamais de spam</span>
+        <button class="cf-submit" type="submit" id="cf-btn">
+          <span id="cf-btn-text">Envoyer →</span>
+        </button>
+      </div>
+      <div class="cf-success" id="cf-success">✓ Message envoyé — je vous réponds très vite !</div>
+      <div class="cf-error" id="cf-error">Une erreur est survenue. Réessayez ou écrivez directement à fouadkeb2003@gmail.com</div>
+    </form>
+  </div>
+</div>
   </div>
 </section>
 
@@ -1870,6 +2234,73 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; display: flex; al
 <script>
 document.getElementById('yr').textContent = new Date().getFullYear();
 
+// ── DARK / LIGHT THEME ───────────────────────────────────────────────────────
+const themeBtn = document.getElementById('theme-btn');
+const root = document.documentElement;
+
+function setTheme(theme) {
+  root.setAttribute('data-theme', theme);
+  try { localStorage.setItem('fk-theme', theme); } catch(e) {}
+}
+
+// Restore saved theme or system preference
+(function() {
+  let saved;
+  try { saved = localStorage.getItem('fk-theme'); } catch(e) {}
+  if (saved === 'light') {
+    setTheme('light');
+  } else {
+    setTheme('dark');
+  }
+})();
+
+themeBtn.addEventListener('click', () => {
+  const current = root.getAttribute('data-theme');
+  setTheme(current === 'light' ? 'dark' : 'light');
+});
+
+// ── CONTACT FORM ─────────────────────────────────────────────────────────────
+const cfForm = document.getElementById('contact-form');
+if (cfForm) {
+  cfForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('cf-btn');
+    const btnText = document.getElementById('cf-btn-text');
+    const success = document.getElementById('cf-success');
+    const error = document.getElementById('cf-error');
+
+    // Basic validation
+    const name = document.getElementById('cf-name').value.trim();
+    const email = document.getElementById('cf-email').value.trim();
+    const msg = document.getElementById('cf-msg').value.trim();
+    if (!name || !email || !msg) return;
+
+    btn.disabled = true;
+    btnText.textContent = 'Envoi…';
+    success.classList.remove('show');
+    error.classList.remove('show');
+
+    try {
+      const res = await fetch(cfForm.action, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(cfForm)
+      });
+      if (res.ok) {
+        success.classList.add('show');
+        cfForm.reset();
+      } else {
+        error.classList.add('show');
+      }
+    } catch(err) {
+      error.classList.add('show');
+    }
+
+    btn.disabled = false;
+    btnText.textContent = 'Envoyer →';
+  });
+}
+
 // Nav sticky + active links — throttlé pour ne pas tourner à chaque pixel
 const nav = document.getElementById('nav');
 const secs = [...document.querySelectorAll('section[id]')];
@@ -1903,6 +2334,21 @@ setTimeout(() => {
 }, 300);
 
 // ── MODALS ────────────────────────────────────────────────────────────────────
+// ── COMPTEURS ANIMÉS ─────────────────────────────────────────────────────────
+function animateCounter(el) {
+  const target = parseInt(el.dataset.count);
+  const duration = target > 100 ? 1800 : 800;
+  const start = performance.now();
+  function step(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(eased * target);
+    if (progress < 1) requestAnimationFrame(step);
+    else el.textContent = target;
+  }
+  requestAnimationFrame(step);
+}
+
 function toggleMenu() {
   const m = document.getElementById('mobile-menu');
   const open = m.style.display === 'flex';
