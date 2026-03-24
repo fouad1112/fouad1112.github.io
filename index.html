@@ -284,6 +284,9 @@ nav.stuck {
 .t-out { font-family: var(--mono); font-size: 13px; color: var(--muted); margin-left: 20px; margin-bottom: 14px; }
 .t-out.hi { color: var(--accent); }
 .t-cur { display: inline-block; width: 7px; height: 14px; background: var(--accent2); vertical-align: middle; animation: blink 1s steps(1) infinite; }
+.t-link { color: var(--accent2); text-decoration: none; border-bottom: 1px solid rgba(78,255,176,0.3); transition: border-color 0.2s, color 0.2s; }
+.t-link:hover { color: var(--accent); border-color: var(--accent); }
+[data-theme="light"] .t-link { color: #4fffb0; border-color: rgba(78,255,176,0.4); }
 @keyframes blink { 0%,50%{opacity:1} 51%,100%{opacity:0} }
 @keyframes breathe { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
@@ -823,7 +826,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; display: flex; al
   .c-icon { font-size: 18px; }
   .c-label { font-size: 9px; }
   .c-val { font-size: 13px; word-break: break-all; }
-  .terminal { display: none; }
+  /* terminal visible on mobile */
 
   footer { flex-direction: column; gap: 8px; text-align: center; padding: 22px 0; }
   .foot-text { font-size: 10px; }
@@ -991,7 +994,7 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; display: flex; al
 .theme-toggle:hover { border-color: var(--accent); }
 
 /* ── CONTACT FORM ──────────────────────────────────────────────────────────── */
-.contact-form-section { margin-top: 60px; }
+.contact-form-section { margin-top: 0; }
 .contact-form-wrap {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -1564,19 +1567,11 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; display: flex; al
 <!-- CONTACT -->
 <section id="contact" class="section">
   <div class="w">
+    <span class="s-label reveal">// Contact</span>
     <div class="contact-inner">
+
+      <!-- TERMINAL GAUCHE -->
       <div class="reveal">
-        <span class="s-label">// Contact</span>
-        <h2 class="contact-big">Travaillons<br><em>ensemble.</em></h2>
-        <p class="contact-intro">Je recherche une alternance pour Septembre 2026 en <strong>audit, SOC ou sécurisation d'infrastructures</strong>. N'hésitez pas à me contacter directement.</p>
-        <div class="contact-grid">
-          <a href="mailto:fouadkeb2003@gmail.com" class="c-card"><span class="c-icon">✉️</span><span class="c-label">Email</span><span class="c-val">fouadkeb2003@gmail.com</span></a>
-          <a href="tel:+33651885833" class="c-card"><span class="c-icon">📱</span><span class="c-label">Téléphone</span><span class="c-val">+33 6 51 88 58 33</span></a>
-          <a href="https://www.linkedin.com/in/fouad-kebbache/" target="_blank" rel="noreferrer" class="c-card"><span class="c-icon">💼</span><span class="c-label">LinkedIn</span><span class="c-val">fouad-kebbache</span></a>
-          <a href="https://github.com/fouad1112" target="_blank" rel="noreferrer" class="c-card"><span class="c-icon">⚡</span><span class="c-label">GitHub</span><span class="c-val">fouad1112</span></a>
-        </div>
-      </div>
-      <div class="reveal d2">
         <div class="terminal">
           <div class="term-bar">
             <div class="t-dot r"></div><div class="t-dot y"></div><div class="t-dot g"></div>
@@ -1584,56 +1579,60 @@ footer { border-top: 1px solid var(--border); padding: 32px 0; display: flex; al
           </div>
           <div class="term-body">
             <div class="t-row"><span class="t-prompt">$</span><span class="t-cmd">whoami</span></div>
-            <div class="t-out">fouad_kebbache</div>
+            <div class="t-out">Fouad Kebbache — Élève Ingénieur Cybersécurité · EIJV Amiens</div>
             <div class="t-row"><span class="t-prompt">$</span><span class="t-cmd">cat status.conf</span></div>
-            <div class="t-out hi">DISPONIBLE → Septembre 2026</div>
-            <div class="t-row"><span class="t-prompt">$</span><span class="t-cmd">cat cible.txt</span></div>
-            <div class="t-out">Alternance: Audit / SOC / Infrastructure</div>
+            <div class="t-out hi">DISPONIBLE → Alternance Septembre 2026</div>
             <div class="t-row"><span class="t-prompt">$</span><span class="t-cmd">cat localisation.txt</span></div>
-            <div class="t-out">Hauts-de-France · Île-de-France</div>
+            <div class="t-out">Hauts-de-France · Île-de-France · Permis B</div>
+            <div class="t-row"><span class="t-prompt">$</span><span class="t-cmd">cat contact.json</span></div>
+            <div class="t-out" style="white-space:pre;line-height:1.7;">{
+  email    : <a href="mailto:fouadkeb2003@gmail.com" class="t-link">fouadkeb2003@gmail.com</a>
+  tel      : <a href="tel:+33651885833" class="t-link">+33 6 51 88 58 33</a>
+  linkedin : <a href="https://linkedin.com/in/fouad-kebbache" target="_blank" rel="noreferrer" class="t-link">fouad-kebbache ↗</a>
+  github   : <a href="https://github.com/fouad1112" target="_blank" rel="noreferrer" class="t-link">fouad1112 ↗</a>
+}</div>
             <div class="t-row"><span class="t-prompt">$</span><span class="t-cmd">ping fouadkeb2003@gmail.com<span class="t-cur"></span></span></div>
           </div>
         </div>
       </div>
+
+      <!-- FORMULAIRE DROITE -->
+      <div class="reveal d2">
+        <div class="contact-form-wrap">
+          <h3 class="cf-title">Envoyer un message</h3>
+          <p class="cf-sub">Réponse sous 24h. Toutes les opportunités d'alternance sont les bienvenues.</p>
+          <form id="contact-form" action="https://formspree.io/f/VOTRE_ID_ICI" method="POST" novalidate>
+            <div class="cf-grid">
+              <div class="cf-field">
+                <label class="cf-label" for="cf-name">Nom</label>
+                <input class="cf-input" type="text" id="cf-name" name="name" placeholder="Jean Dupont" required autocomplete="name">
+              </div>
+              <div class="cf-field">
+                <label class="cf-label" for="cf-email">Email</label>
+                <input class="cf-input" type="email" id="cf-email" name="email" placeholder="jean@entreprise.fr" required autocomplete="email">
+              </div>
+            </div>
+            <div class="cf-field" style="margin-bottom:16px;">
+              <label class="cf-label" for="cf-subject">Sujet</label>
+              <input class="cf-input" type="text" id="cf-subject" name="subject" placeholder="Alternance cybersécurité — Sept. 2026" required>
+            </div>
+            <div class="cf-field">
+              <label class="cf-label" for="cf-msg">Message</label>
+              <textarea class="cf-textarea" id="cf-msg" name="message" placeholder="Bonjour Fouad, je vous contacte pour…" required></textarea>
+            </div>
+            <div class="cf-footer">
+              <span class="cf-note">Formulaire chiffré · jamais de spam</span>
+              <button class="cf-submit" type="submit" id="cf-btn">
+                <span id="cf-btn-text">Envoyer →</span>
+              </button>
+            </div>
+            <div class="cf-success" id="cf-success">✓ Message envoyé — je vous réponds très vite !</div>
+            <div class="cf-error" id="cf-error">Une erreur est survenue. Réessayez ou écrivez directement à fouadkeb2003@gmail.com</div>
+          </form>
+        </div>
+      </div>
+
     </div>
-
-
-<!-- FORMULAIRE DE CONTACT -->
-<div class="contact-form-section reveal">
-  <div class="contact-form-wrap">
-    <h3 class="cf-title">Envoyer un message</h3>
-    <p class="cf-sub">Réponse sous 24h. Toutes les opportunités d'alternance sont les bienvenues.</p>
-
-    <form id="contact-form" action="https://formspree.io/f/xdawqpwb" method="POST" novalidate>
-      <div class="cf-grid">
-        <div class="cf-field">
-          <label class="cf-label" for="cf-name">Nom</label>
-          <input class="cf-input" type="text" id="cf-name" name="name" placeholder="Jean Dupont" required autocomplete="name">
-        </div>
-        <div class="cf-field">
-          <label class="cf-label" for="cf-email">Email</label>
-          <input class="cf-input" type="email" id="cf-email" name="email" placeholder="jean@entreprise.fr" required autocomplete="email">
-        </div>
-      </div>
-      <div class="cf-field" style="margin-bottom:16px;">
-        <label class="cf-label" for="cf-subject">Sujet</label>
-        <input class="cf-input" type="text" id="cf-subject" name="subject" placeholder="Alternance cybersécurité — Sept. 2026" required>
-      </div>
-      <div class="cf-field">
-        <label class="cf-label" for="cf-msg">Message</label>
-        <textarea class="cf-textarea" id="cf-msg" name="message" placeholder="Bonjour Fouad, je vous contacte pour…" required></textarea>
-      </div>
-      <div class="cf-footer">
-        <span class="cf-note">Formulaire chiffré · jamais de spam</span>
-        <button class="cf-submit" type="submit" id="cf-btn">
-          <span id="cf-btn-text">Envoyer →</span>
-        </button>
-      </div>
-      <div class="cf-success" id="cf-success">✓ Message envoyé — je vous réponds très vite !</div>
-      <div class="cf-error" id="cf-error">Une erreur est survenue. Réessayez ou écrivez directement à fouadkeb2003@gmail.com</div>
-    </form>
-  </div>
-</div>
   </div>
 </section>
 
